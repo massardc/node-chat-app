@@ -17,7 +17,7 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', (newMessage) => {
     console.log(`${new Date()} - New Message from ${newMessage.from}`);
 
-    socket.emit('newMessage', {
+    io.emit('newMessage', {
       from: newMessage.from,
       text: newMessage.text,
       time: new Date()
