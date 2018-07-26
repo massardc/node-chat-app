@@ -25,13 +25,15 @@ io.on('connection', (socket) => {
   //   time: new Date()
   // });
 
-  socket.on('createMessage', (newMessage) => {
+  socket.on('createMessage', (newMessage, callback) => {
     console.log('createMessage', newMessage);
 
-    socket.broadcast.emit(
+    io.emit(
       'newMessage', 
       generateMessage(newMessage.from, `${new Date()} - new message from ${newMessage.from}: ${newMessage.text}`)
     );
+
+    callback('This is from the server.');
   });
 
   socket.on('disconnect', (s) => {
