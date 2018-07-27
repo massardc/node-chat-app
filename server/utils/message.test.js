@@ -8,7 +8,7 @@ describe('generateMessage', () => {
     const text = "Hey what's up?";
     const message = generateMessage(from, text);
     expect(message).toMatchObject({from, text});
-    expect(typeof message.time.getTime()).toBe('number');
+    expect(typeof message.time).toBe('number');
   })
 });
 
@@ -21,6 +21,6 @@ describe('generateLocationMessage', () => {
     const message = generateLocationMessage(from, latitude, longitude);
     
     expect(message).toMatchObject({from, url});
-    expect(typeof message.time.getTime()).toBe('number');
+    expect(typeof message.time).toBe('number');
   })
 })

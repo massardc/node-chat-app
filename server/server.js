@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
+const moment = require('moment');
 
 const { generateMessage, generateLocationMessage } = require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
@@ -21,10 +22,11 @@ io.on('connection', (socket) => {
 
   socket.on('createMessage', (newMessage, callback) => {
     console.log('createMessage', newMessage);
+    var messageTime = moment().format('MMM Do YYYY - h:mm a');
 
     io.emit(
       'newMessage', 
-      generateMessage(newMessage.from, `${new Date()} - new message from ${newMessage.from}: ${newMessage.text}`)
+      generateMessage(newMessage.from, newMessage.text)
     );
 
     callback();
