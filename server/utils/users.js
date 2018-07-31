@@ -29,6 +29,15 @@ class Users {
 
     return namesArray;
   }
+  getRoomList() {
+    var rooms = [];
+    this.users.forEach(user => {
+      if (rooms.indexOf(user.room) === -1) {
+        rooms.push(user.room);
+      }
+    });
+    return rooms;
+  }
 }
 
 // var me = new Person('Clem', 44);

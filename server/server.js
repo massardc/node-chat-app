@@ -36,6 +36,11 @@ io.on('connection', (socket) => {
     callback();
   });
 
+  socket.on('roomsRequest', () => {
+    socket.emit('updateRoomList', users.getRoomList());
+  });
+
+
   socket.on('createMessage', (newMessage, callback) => {
     const user = users.getUser(socket.id);
 
